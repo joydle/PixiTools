@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- PixiTools: a 2D sprite with a selection box around it. Click a thing,
+       get what it is and the line that made it. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b1e23"/>
+      <stop offset="1" stop-color="#101215"/>
+    </linearGradient>
+    <clipPath id="tile"><rect width="128" height="128" rx="28"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="128" height="128" fill="url(#bg)"/>
+
+    <!-- the sprite: a flat fish, body and tail -->
+    <path d="M34 64 L46 50 L46 78 Z" fill="#d99aa6"/>
+    <ellipse cx="68" cy="64" rx="27" ry="17" fill="#e2a6b3"/>
+    <path d="M44 64 A27 17 0 0 0 95 64 A30 12 0 0 1 44 64 Z" fill="#d99aa6"/>
+    <circle cx="82" cy="59" r="3.5" fill="#101215"/>
+
+    <!-- the selection: four corner brackets -->
+    <g stroke="#a3cbb8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 38 V24 H38"/>
+      <path d="M90 24 H104 V38"/>
+      <path d="M104 90 V104 H90"/>
+      <path d="M38 104 H24 V90"/>
+    </g>
+  </g>
+</svg>

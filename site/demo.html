@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pond Hop, a PixiTools demo</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+html,body{margin:0;height:100%;background:#0e2a33;overflow:hidden}
+canvas{display:block;touch-action:none;cursor:pointer}
+#hud{position:fixed;left:12px;bottom:12px;display:flex;align-items:center;gap:10px;font:500 13px/1 system-ui,-apple-system,sans-serif;color:#fff;pointer-events:none}
+#hud > *{height:34px;display:flex;align-items:center;gap:8px;padding:0 13px;border-radius:17px;background:#101216cc;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#hud b{font:600 15px/1 ui-monospace,Menlo,monospace}
+#hud i{width:10px;height:10px;border-radius:50%;background:#7fd6e8}
+@media (max-width:560px){#how{display:none}}
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "pixi.js": "./lib/pixitools.pixi.js",
+    "@joydle/pixitools": "./lib/pixitools.js"
+  },
+  "scopes": {
+    "./lib/": { "pixi.js": "https://cdn.jsdelivr.net/npm/pixi.js@8.23.0/dist/pixi.mjs" }
+  }
+}
+</script>
+</head>
+<body>
+<div id="hud">
+  <div data-pixitools-component="Catch counter" data-pixitools-props='{"caught":0}'><i></i><b id="caught">0</b> caught</div>
+  <div id="how" data-pixitools-component="Controls hint">click the water to leap; land on the dragonfly</div>
+</div>
+<script type="module" src="demo.js"></script>
+</body>
+</html>

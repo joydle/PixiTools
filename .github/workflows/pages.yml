@@ -1,0 +1,46 @@
+# The project site (site/), published with GitHub Pages on every push to main
+# that touches it or the source. The demo loads the built library from
+# site/lib, which is built here and never committed.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["site/**", "src/**", "scripts/site.mjs", "package.json", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy site
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run site
+      - run: test -f site/index.html && test -f site/lib/pixitools.js && test -f site/lib/pixitools.pixi.js
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

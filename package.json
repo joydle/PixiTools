@@ -1,0 +1,90 @@
+{
+  "name": "@joydle/pixitools",
+  "version": "0.1.0",
+  "description": "An inspector and a profiler for PixiJS, in the page: click a sprite, get the line of code that made it.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joydle/PixiTools.git"
+  },
+  "homepage": "https://joydle.github.io/PixiTools/",
+  "bugs": "https://github.com/joydle/PixiTools/issues",
+  "main": "dist/pixitools.js",
+  "module": "dist/pixitools.js",
+  "types": "dist/types/index.d.ts",
+  "unpkg": "dist/pixitools.global.min.js",
+  "jsdelivr": "dist/pixitools.global.min.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/pixitools.js"
+    },
+    "./pixi": {
+      "types": "./dist/types/hooked/pixi.d.ts",
+      "default": "./dist/pixitools.pixi.js"
+    },
+    "./vite": {
+      "types": "./dist/types/vite.d.ts",
+      "default": "./dist/pixitools.vite.js"
+    },
+    "./global": "./dist/pixitools.global.min.js",
+    "./package.json": "./package.json",
+    "./src/*": "./src/*.ts"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": [
+    "./dist/pixitools.pixi.js",
+    "./dist/pixitools.global.js",
+    "./dist/pixitools.global.min.js"
+  ],
+  "scripts": {
+    "build": "rollup -c && tsc -p tsconfig.types.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm test && npm run build && node scripts/check-brand.mjs",
+    "site": "npm run build && node scripts/site.mjs",
+    "serve": "npm run site && node scripts/serve.mjs",
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "source-map-js": "^1.2.0"
+  },
+  "peerDependencies": {
+    "pixi.js": ">=8.0.0"
+  },
+  "peerDependenciesMeta": {
+    "pixi.js": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/node": "^25.0.10",
+    "fake-indexeddb": "^6.2.5",
+    "jsdom": "^29.1.1",
+    "pixi.js": "^8.22.0",
+    "rollup": "^4.9.0",
+    "tslib": "^2.6.2",
+    "typescript": "~5.9.3",
+    "vitest": "^4.0.18"
+  },
+  "keywords": [
+    "pixi",
+    "pixijs",
+    "pixi.js",
+    "devtools",
+    "inspector",
+    "profiler",
+    "webgl",
+    "performance",
+    "sprites",
+    "agent"
+  ]
+}
